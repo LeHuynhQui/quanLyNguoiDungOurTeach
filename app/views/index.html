@@ -21,6 +21,10 @@
       .den {
         background-color: rgba(153, 153, 153, 0.1);
       }
+
+      #basic-addon2:hover{
+        cursor: pointer;
+      }
     </style>
   </head>
 
@@ -118,16 +122,18 @@
             <div class="col-md-4">
               <!-- BEGIN TÌM KIẾM -->
               <div class="input-group mb-3">
+                <a href="/app/views/index.html" class="d-none reset"><button class="btn btn-warning mr-3">reset</button></a>
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control searchInput"
                   placeholder="Nhập từ khóa"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
                 />
                 <div class="input-group-append">
                   <span class="input-group-text" id="basic-addon2"
-                    ><i class="fa fa-search"></i
+                    onclick="handleTimKiem()"  
+                  ><i class="fa fa-search"></i
                   ></span>
                 </div>
               </div>

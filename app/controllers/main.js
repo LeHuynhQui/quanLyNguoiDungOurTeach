@@ -70,6 +70,9 @@ function handleThemMoiBtn () {
         Thêm người dùng
     </button>
     `;
+
+    resetErrorMessage();
+
     getEle("TaiKhoan").disabled = false;
     getEle("MatKhau").type = "password";
 
@@ -256,6 +259,7 @@ function handleSuaBtn(id) {
         Cập nhật người dùng
     </button>
     `
+    resetErrorMessage()
     service.getInforUser(id)
         .then(result =>{
             const userEdit = result.data
@@ -302,4 +306,43 @@ function updateUser(event) {
     }
 
 
+}
+
+// tim kiem
+function handleTimKiem() {
+    let searchValue = document.querySelector(".searchInput").value.toLowerCase().trim()
+
+    let mangSearch = []
+
+    mangUser.map(user => {
+        let lowerCase = user.hoTen.toLowerCase().trim()
+        if (lowerCase.includes(searchValue)) {
+            mangSearch.push(user)
+        }
+    })
+
+    if (mangSearch.length) {
+        renderUsers(mangSearch)
+    } else {
+        document.querySelector("#tblDanhSachNguoiDung").innerHTML = `
+            <tr>
+                <td colspan="8" class="text-center">Không tìm thấy kết quả.</td>
+            </tr>
+        `
+    }
+
+    document.querySelector(".reset").classList.remove("d-none")
+}
+
+// reset error message
+
+function resetErrorMessage() {
+    getEle("TaiKhoanError").innerHTML = '';
+    getEle("HoTenError").innerHTML = '';
+    getEle("MatKhauError").innerHTML = '';
+    getEle("EmailError").innerHTML = '';
+    getEle("HinhAnhError").innerHTML = '';
+    getEle("loaiNguoiDungError").innerHTML = '';
+    getEle("loaiNgonNguError").innerHTML = '';
+    getEle("MoTaError").innerHTML = '';
 }
